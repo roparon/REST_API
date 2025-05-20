@@ -37,7 +37,6 @@ class User(Resource):
             abort (404, message ='Users not found')
         return users
     
-    
 
 api.add_resource(User, '/api/users')
 
