@@ -82,8 +82,6 @@ class User(Resource):
         db.session.commit()
         return 'User deleted succesfully'
 
-    
-
 # API Endpoints
 api.add_resource(Users, '/api/users')
 api.add_resource(User, '/api/users/<int:id>')
