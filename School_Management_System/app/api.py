@@ -1,5 +1,5 @@
 from flask_restful import Resource, marshal_with, fields, reqparse, abort
-from app import db
+from app import db, api, app
 
 
 
@@ -80,8 +80,3 @@ class User(Resource):
 api.add_resource(Users, '/api/users')
 api.add_resource(User, '/api/users/<int:id>')
 
-
-if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True)
