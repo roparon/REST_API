@@ -4,7 +4,7 @@ from flask_restful import  Api
 from app.resources.user import Users, User
 from app.extensions import db
 from config import Config
-
+from flask_migrate import Migrate
 
 
 
@@ -13,6 +13,7 @@ from config import Config
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
+migrate = Migrate(app, db)
 api = Api(app)
 
 

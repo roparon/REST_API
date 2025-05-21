@@ -1,5 +1,5 @@
 from flask_restful import Resource, marshal_with, fields, reqparse, abort
-from app.mdels.user import UserModel
+from app.models.user import UserModel
 from app.extensions import db
 
 
