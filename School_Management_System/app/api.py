@@ -77,6 +77,7 @@ class User(Resource):
         return 'User deleted succesfully'
 
 # API Endpoints
+from app.api import User, Users
 api.add_resource(Users, '/api/users')
 api.add_resource(User, '/api/users/<int:id>')
 
