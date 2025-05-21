@@ -1,18 +1,9 @@
 from flask_restful import Resource, marshal_with, fields, reqparse, abort
+from app.mdels.user import UserModel
 from app.extensions import db
 
 
 
-
-
-#Database model
-class UserModel(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db. Column(db.String(80), unique=True, nullable=False)
-    email = db. Column(db.String(80), unique=True, nullable=False)
-
-    def __repr__(self):
-        return f"{self.username} {self.email}"
 
 # Request Parser
 user_args = reqparse.RequestParser()
