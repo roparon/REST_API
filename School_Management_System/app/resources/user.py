@@ -42,7 +42,6 @@ def post(self):
         except Exception as e:
             db.session.rollback()
             abort(400, message=f"There was an error creating the user: {e}")
-
         users = UserModel.query.all()
         return users, 201
     
