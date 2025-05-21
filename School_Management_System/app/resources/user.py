@@ -1,5 +1,5 @@
 from flask_restful import Resource, marshal_with, fields, reqparse, abort
-from app.models.user import UserModel
+from app.models.user2 import UserModel
 from app.extensions import db
 
 
@@ -30,12 +30,19 @@ class Users(Resource):
     
 
     # create a user
-    @marshal_with(user_fields)
-    def post(self):
+def post(self):
         args = user_args.parse_args()
-        new_user = UserModel(username=args['username'], email=args['email'])
-        db.session.add(new_user)
-        db.session.commit()
+        try:
+            existing_user = UserModel.query.filter_by(username=args['username']).first()
+            if existing_user:
+                abort(400, message="User with this username already exists")
+            new_user = UserModel(username=args['username'], email=args['email'])
+            db.session.add(new_user)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            abort(400, message=f"There was an error creating the user: {e}")
+
         users = UserModel.query.all()
         return users, 201
     
