@@ -1,12 +1,6 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_restful import Resource, Api, marshal_with, fields, reqparse, abort
+from flask_restful import Resource, marshal_with, fields, reqparse, abort
+from app import db
 
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///api.db'
-db = SQLAlchemy(app)
-api = Api(app)
 
 
 
