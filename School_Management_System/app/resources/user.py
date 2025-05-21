@@ -1,5 +1,5 @@
 from flask_restful import Resource, marshal_with, fields, reqparse, abort
-from app import db, api, app
+from app.extensions import db
 
 
 
@@ -76,8 +76,5 @@ class User(Resource):
         db.session.commit()
         return 'User deleted succesfully'
 
-# API Endpoints
-from app.resources.user import User, Users
-api.add_resource(Users, '/api/users')
-api.add_resource(User, '/api/users/<int:id>')
+
 
