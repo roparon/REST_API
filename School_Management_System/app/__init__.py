@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_restful import  Api
 from app.resources.user import Users, User
 from app.extensions import db
+from config import Config
 
 
 
@@ -10,6 +11,7 @@ from app.extensions import db
 
 
 app = Flask(__name__)
+app.config.from_object(Config)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///api.db'
 db.init_app(app)
 api = Api(app)
