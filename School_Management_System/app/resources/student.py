@@ -11,7 +11,7 @@ student_args.add_argument('last_name', type=str, required=True, help="Last Name 
 student_args.add_argument('student_id', type=str, required=True, help="Student ID cannot be blank")
 student_args.add_argument('email', type=str, required=True, help="Email of the student cannot be blank")
 student_args.add_argument('date_of_birth', type=parse_date)
-student_args.add_argument('Enrollment_date', type=parse_date)
+student_args.add_argument('enrollment_date', type=parse_date)
 
 
 
@@ -34,7 +34,7 @@ class Students(Resource):
         if not students:
             abort(404, message="Students not found")
         return students
-
+    
     @marshal_with(student_fields)
     def post(self):
         args = student_args.parse_args()
@@ -52,8 +52,19 @@ class Students(Resource):
             return new_student, 201
         except Exception as e:
             db.session.rollback()
-            abort(404, message=f"Error creating a student{str(e)}")
+            abort(404, message=f"Error creating a student {str(e)}")
 
+
+
+class Student(Resource):
+    @marshal_with(student_fields)
+    def get(self, id):
+        student = StudentModel.query.filter_by(id=id).first()
+        if not student:
+            abort(404, message="Student not found")
+        return student
+    
+    
     @marshal_with(student_fields)
     def put(self, id):
         args = student_args.parse_args()
@@ -67,6 +78,32 @@ class Students(Resource):
             student.email = args['email']
             student.date_of_birth = args['date_of_birth']
             student.enrollment_date = args['enrollment_date']
+            db.session.commit()
+            return student
+        except Exception as e:
+            db.session.rollback()
+            abort(404, message=f"Error updating a student{str(e)}")
+    
+
+    @marshal_with(student_fields)
+    def patch(self, id):
+        args = student_args.parse_args()
+        student = StudentModel.query.filter_by(id=id).first()
+        if not student:
+            abort(404, message="Student not found")
+        try:
+            if args['first_name']:
+                student.first_name = args['first_name']
+            if args['last_name']:
+                student.last_name = args['last_name']
+            if args['student_id']:
+                student.student_id = args['student_id']
+            if args['email']:
+                student.email = args['email']
+            if args['date_of_birth']:
+                student.date_of_birth = args['date_of_birth']
+            if args['enrollment_date']:
+                student.enrollment_date = args['enrollment_date']
             db.session.commit()
             return student
         except Exception as e:

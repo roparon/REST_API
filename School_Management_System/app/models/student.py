@@ -8,7 +8,7 @@ class StudentModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
-    students_id = db.Column(db.String(20), nullable=False, unique=True)
+    student_id = db.Column(db.String(20), nullable=False, unique=True)
     email = db.Column(db.String(120), nullable=False, unique=True)
     date_of_birth = db.Column(db.Date)
     enrollment_date = db.Column(db.DateTime, default=datetime.now(timezone.utc))
