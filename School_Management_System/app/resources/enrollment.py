@@ -8,11 +8,10 @@ from dateutil.parser import parse as parser_date
 enrollment_args = reqparse.RequestParser()
 enrollment_args.add_argument('student_id', type=int, required=True, help="Student ID cannot be blank!")
 enrollment_args.add_argument('course_id', type=int, required=True, help="Course ID cannot be blank!")
-enrollment_args.add_argument('enrollment_date', type=parser_date, required=True, help="Enrollment date cannot be blank!")
 enrollment_args.add_argument('status', type=str, required=True, help="Status cannot be blank!")
 enrollment_args.add_argument('fee_id', type=int, required=True, help="Fee ID cannot be blank!")
 enrollment_args.add_argument('payment_status', type=str, required=True, help="Payment status cannot be blank!")
-enrollment_args.add_argument('payment_date', type=parser_date)
+enrollment_args.add_argument('payment_date', type=str, required=True, help="Payment date cannot be blank!")
 
 
 
@@ -45,7 +44,6 @@ class Enrollments(Resource):
             new_enrollment = EnrollmentModel(
                 student_id=args['student_id'],
                 course_id=args['course_id'],
-                enrollment_date=args['enrollment_date'],
                 status=args['status'],
                 fee_id=args['fee_id'],
                 payment_status=args['payment_status'],
