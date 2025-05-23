@@ -48,3 +48,41 @@ class Courses(Resource):
         except Exception as e:
             db.session.rollback()
             abort(404, message=f"Error creating a course {str(e)}")
+
+# Course Resource by ID
+class Course(Resource):
+    @marshal_with(course_fields)
+    def get(self, id):
+        course = CourseModel.query.get(id)
+        if not course:
+            abort(404, message="Course not found")
+        return course
+
+    @marshal_with(course_fields)
+    def put(self, id):
+        args = course_args.parse_args()
+        course = CourseModel.query.get(id)
+        if not course:
+            abort(404, message="Course not found")
+        try:
+            course.code = args['code']
+            course.name = args['name']
+            course.credits = args['credits']
+            course.teacher_id = args['teacher_id']
+            db.session.commit()
+            return course, 200
+        except Exception as e:
+            db.session.rollback()
+            abort(404, message=f"Error updating the course {str(e)}")
+
+    def delete(self, id):
+        course = CourseModel.query.get(id)
+        if not course:
+            abort(404, message="Course not found")
+        try:
+            db.session.delete(course)
+            db.session.commit()
+            return '', 204
+        except Exception as e:
+            db.session.rollback()
+            abort(404, message=f"Error deleting the course {str(e)}")

@@ -32,6 +32,6 @@ api.add_resource(Students, '/api/students')
 api.add_resource(Student, '/api/students/<int:id>')
 api.add_resource(Enrollments, '/api/enrollments')
 api.add_resource(course, '/api/courses')
-
+api.add_resource(course, '/api/course/<int:id>')
 
 
