@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import  Api
 from app.resources.user import Users, User
-from app.resources.teacher import Teachers
+from app.resources.teacher import Teachers, Teacher
 from app.extensions import db
 from config import Config
 from flask_migrate import Migrate
@@ -24,6 +24,7 @@ from app.resources.user import User, Users
 api.add_resource(Users, '/api/users')
 api.add_resource(User, '/api/users/<int:id>')
 api.add_resource(Teachers, '/api/teachers')
+api.add_resource(Teacher, '/api/teachers/<int:id>')
 
 
 

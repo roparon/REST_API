@@ -52,4 +52,54 @@ class Teachers(Resource):
             abort(404, message=f"Error creating a teacher{str(e)}")
 
 
-#create a resource by implementig the geta specific teacher by id, edit, delete
+#create a resource by implementig the get a specific teacher by id, edit, delete
+
+class Teacher(Resource):
+    @marshal_with(teacher_fields)
+    def get(self, id):
+        teacher = TeacherModel.query.filter_by(id=id).first()
+        if not teacher:
+            abort(404, message="Teacher not found")
+        return teacher, 200
+    
+
+class Teacher(Resource):
+    @marshal_with(teacher_fields)
+    def patch(self, id):
+        args = teacher_args.parse_args()
+        teacher = TeacherModel.query.filter_by(id=id).first()
+        if not teacher:
+            abort(404, message="Teacher not found")
+        try:
+            if args['first_name']:
+                teacher.first_name = args['first_name']
+            if args['last_name']:
+                teacher.last_name = args['last_name']
+            if args['email']:
+                teacher.email = args['email']
+            if args['phone']:
+                teacher.phone = args['phone']
+            if args['department']:
+                teacher.department = args['department']
+            if args['credits']:
+                teacher.credits = args['credits']
+            db.session.commit()
+            return teacher, 200
+        
+        except Exception as e:
+            db.session.rollback()
+            abort(404, message=f"Error updating a teacher{str(e)}")
+
+
+class Teacher(Resource):
+    def delete(self, id):
+        teacher = TeacherModel.query.filter_by(id=id).first()
+        if not teacher:
+            abort(404, message="Teacher not found")
+        try:
+            db.session.delete(teacher)
+            db.session.commit()
+            return '', 204
+        except Exception as e:
+            db.session.rollback()
+            abort(404, message=f"Error deleting a teacher{str(e)}")
