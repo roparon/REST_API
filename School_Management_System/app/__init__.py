@@ -5,6 +5,7 @@ from app.resources.user import Users, User
 from app.resources.teacher import Teachers, Teacher
 from app.resources.student import Students, Student
 from app.resources.enrollment import Enrollments
+from app.resources.course import Courses as course
 from app.extensions import db
 from config import Config
 from flask_migrate import Migrate
@@ -30,6 +31,7 @@ api.add_resource(Teacher, '/api/teachers/<int:id>')
 api.add_resource(Students, '/api/students')
 api.add_resource(Student, '/api/students/<int:id>')
 api.add_resource(Enrollments, '/api/enrollments')
+api.add_resource(course, '/api/courses')
 
 
 
