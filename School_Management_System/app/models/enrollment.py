@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 class EnrollmentModel(db.Model):
     __tablename__ = "enrollments"
     id = db.Column(db.Integer, primary_key=True)
-    students_id = db.Column(db.Integer, db.ForeignKey('students.id'), nullable=False)
+    student_id = db.Column(db.Integer, db.ForeignKey('students.id'), nullable=False)
     course_id = db.Column(db.Integer, db.ForeignKey('courses.id'), nullable=False)
     enrolment_date = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     grade = db.Column(db.String(2))

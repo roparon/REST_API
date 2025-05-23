@@ -45,9 +45,6 @@ class Enrollments(Resource):
                 student_id=args['student_id'],
                 course_id=args['course_id'],
                 status=args['status'],
-                fee_id=args['fee_id'],
-                payment_status=args['payment_status'],
-                payment_date=args['payment_date']
             )
             db.session.add(new_enrollment)
             db.session.commit()
@@ -55,3 +52,63 @@ class Enrollments(Resource):
         except Exception as e:
             db.session.rollback()
             abort(404, message=f"Error creating an enrollment {str(e)}")
+
+
+# Enrollment Resource by ID
+class Enrollment(Resource):
+    @marshal_with(enrollment_fields)
+    def get(self, id):
+        enrollment = EnrollmentModel.query.get(id)
+        if not enrollment:
+            abort(404, message="Enrollment not found")
+        return enrollment
+
+    @marshal_with(enrollment_fields)
+    def put(self, id):
+        args = enrollment_args.parse_args()
+        enrollment = EnrollmentModel.query.get(id)
+        if not enrollment:
+            abort(404, message="Enrollment not found")
+        try:
+            enrollment.student_id = args['student_id']
+            enrollment.course_id = args['course_id']
+            enrollment.status = args['status']
+            db.session.commit()
+            return enrollment
+        except Exception as e:
+            db.session.rollback()
+            abort(404, message=f"Error updating the enrollment {str(e)}")
+
+
+    @marshal_with(enrollment_fields)
+    def patch(self, id):
+        args = enrollment_args.parse_args()
+        enrollment = EnrollmentModel.query.get(id)
+        if not enrollment:
+            abort(404, message="Enrollment not found")
+        try:
+            if args['student_id']:
+                enrollment.student_id = args['student_id']
+            if args['course_id']:
+                enrollment.course_id = args['course_id']
+            if args['status']:
+                enrollment.status = args['status']
+            db.session.commit()
+            return enrollment
+        except Exception as e:
+            db.session.rollback()
+            abort(404, message=f"Error updating the enrollment {str(e)}")
+
+
+    @marshal_with(enrollment_fields)
+    def delete(self, id):
+        enrollment = EnrollmentModel.query.get(id)
+        if not enrollment:
+            abort(404, message="Enrollment not found")
+        try:
+            db.session.delete(enrollment)
+            db.session.commit()
+            return '', 204
+        except Exception as e:
+            db.session.rollback()
+            abort(404, message=f"Error deleting the enrollment {str(e)}")

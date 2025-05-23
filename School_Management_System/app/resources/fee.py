@@ -1,6 +1,7 @@
 from flask_restful import Resource, marshal_with, fields, reqparse, abort
 from app.models.fee import FeeModel
 from app.extensions import db
+from datetime import datetime
 
 
 
@@ -21,7 +22,7 @@ fee_fields = {
     "amount": fields.Float,
     "fee_type": fields.String,
     "semester": fields.String,
-    "payment_date": fields.DateTime(dt_format='iso8601'),
+    "payment_date": fields.DateTime,
     "status": fields.String
 }
 
@@ -31,12 +32,62 @@ class Fees(Resource):
     @marshal_with(fee_fields)
     def get(self):
         fees = FeeModel.query.all()
+        if not fees:
+            abort(404, message="Fees not found")
+        404    
         return fees
+
 
     @marshal_with(fee_fields)
     def post(self):
         args = fee_args.parse_args()
+        if args.get("payment_date"):
+            args["payment_date"] = datetime.strptime(args["payment_date"], "%Y-%m-%d")
         fee = FeeModel(**args)
         db.session.add(fee)
         db.session.commit()
         return fee, 201
+    
+
+# Fee Resource by ID
+class Fee(Resource):
+    @marshal_with(fee_fields)
+    def get(self, id):
+        fee = FeeModel.query.get(id)
+        if not fee:
+            abort(404, message="Fee not found")
+        return fee
+    
+    @marshal_with(fee_fields)
+    def put(self, id):
+        args = fee_args.parse_args()
+        fee = FeeModel.query.get(id)
+        if not fee:
+            abort(404, message="Fee not found")
+        for key, value in args.items():
+            if key == "payment_date" and value:
+                value = datetime.strptime(value, "%Y-%m-%d")
+            setattr(fee, key, value)
+        db.session.commit()
+        return fee
+    
+    @marshal_with(fee_fields)
+    def patch(self, id):
+        args = fee_args.parse_args()
+        fee = FeeModel.query.get(id)
+        if not fee:
+            abort(404, message="Fee not found")
+        for key, value in args.items():
+            if value is not None:
+                setattr(fee, key, value)
+        db.session.commit()
+        return fee
+    
+    @marshal_with(fee_fields)
+    def delete(self, id):
+        fee = FeeModel.query.get(id)
+        if not fee:
+            abort(404, message="Fee not found")
+        db.session.delete(fee)
+        db.session.commit()
+        return '', 204
