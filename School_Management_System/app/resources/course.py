@@ -75,6 +75,27 @@ class Course(Resource):
             db.session.rollback()
             abort(404, message=f"Error updating the course {str(e)}")
 
+    @marshal_with(course_fields)
+    def patch(self, id):
+        args = course_args.parse_args()
+        course = CourseModel.query.get(id)
+        if not course:
+            abort(404, message="Course not found")
+        try:
+            if args['code']:
+                course.code = args['code']
+            if args['name']:
+                course.name = args['name']
+            if args['credits']:
+                course.credits = args['credits']
+            if args['teacher_id']:
+                course.teacher_id = args['teacher_id']
+            db.session.commit()
+            return course, 200
+        except Exception as e:
+            db.session.rollback()
+            abort(404, message=f"Error updating the course {str(e)}")
+
     def delete(self, id):
         course = CourseModel.query.get(id)
         if not course:
