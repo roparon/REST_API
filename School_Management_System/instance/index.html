@@ -64,17 +64,7 @@
                 display: block;
                 margin-bottom: 20px;
             }
-        }
-        /* Make dropdown links appear below hamburger, not full width */
-        @media (max-width: 700px) {
-            .mobile-navbar .navbar-collapse {
-                position: absolute;
-                top: 56px;
-                left: 0;
-                right: 0;
-                background: #0d6efd;
-                border-radius: 0 0 12px 12px;
-                box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      0 4px 16px rgba(0,0,0,0.08);
                 z-index: 1000;
             }
             .mobile-navbar .navbar-nav {
@@ -121,14 +111,7 @@
             transform: translateY(-4px) scale(1.03);
         }
         .feature-card h3 {
-            color: #4f8cff;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-        .feature-card p {
-            color: #333;
-            font-size: 1rem;
-        }
+            
         footer {
             margin-top: 60px;
             text-align: center;
@@ -152,14 +135,7 @@
 <body>
     <header>
         <h1>School Management System</h1>
-        <p>Efficiently manage students, teachers, courses, enrollments, and fees</p>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary mobile-navbar position-relative">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">SMS</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse w-100" id="mobileNav" style="transition: none;">
+        <p>Efficien
                     <ul class="navbar-nav mb-2 mb-lg-0 w-100 flex-column align-items-start px-3">
                         <li class="nav-item"><a class="nav-link" href="#">Students</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Teachers</a></li>
@@ -194,12 +170,7 @@
             </div>
             <div class="feature-card">
                 <h3>Course Catalog</h3>
-                <p>Organize courses, assign teachers, and manage course details.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Enrollments</h3>
-                <p>Handle student enrollments, course registrations, and class lists.</p>
-            </div>
+            
             <div class="feature-card">
                 <h3>Fee Tracking</h3>
                 <p>Monitor fee payments, outstanding balances, and generate reports.</p>
