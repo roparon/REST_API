@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>School Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #4f8cff 0%, #a6ffcb 100%);
+            min-height: 100vh;
+            color: #222;
+        }
+        header {
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 32px 0 24px 0;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.8rem;
+            color: #2d3a4b;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        header p {
+            font-size: 1.2rem;
+            color: #4f8cff;
+            font-weight: 500;
+        }
+        nav {
+            margin: 32px auto 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(90deg, #4f8cff 60%, #38ef7d 100%);
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 16px rgba(79,140,255,0.13);
+            transition: background 0.3s, transform 0.2s;
+        }
+        nav a:hover {
+            background: linear-gradient(90deg, #38ef7d 60%, #4f8cff 100%);
+            transform: translateY(-3px) scale(1.05);
+        }
+        main {
+            max-width: 900px;
+            margin: 48px auto 0 auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            padding: 40px 36px;
+        }
+        main h2 {
+            color: #2d3a4b;
+            font-size: 2rem;
+            margin-bottom: 18px;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-top: 24px;
+        }
+        .feature-card {
+            flex: 1 1 250px;
+            background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+            border-radius: 14px;
+            padding: 28px 20px;
+            box-shadow: 0 2px 12px rgba(79,140,255,0.07);
+            text-align: center;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .feature-card:hover {
+            box-shadow: 0 8px 32px rgba(56,239,125,0.13);
+            transform: translateY(-4px) scale(1.03);
+        }
+        .feature-card h3 {
+            color: #4f8cff;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        .feature-card p {
+            color: #333;
+            font-size: 1rem;
+        }
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: #4f8cff;
+            font-size: 1rem;
+            padding: 18px 0;
+            background: rgba(255,255,255,0.7);
+            border-top: 1px solid #e0eafc;
+        }
+        @media (max-width: 700px) {
+            main {
+                padding: 24px 8px;
+            }
+            nav {
+                flex-direction: column;
+                gap: 18px;
+            }
+            .features {
+                flex-direction: column;
+                gap: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>School Management System</h1>
+        <p>Efficiently manage students, teachers, courses, enrollments, and fees</p>
+        <nav>
+            <a href="#">Students</a>
+            <a href="#">Teachers</a>
+            <a href="#">Courses</a>
+            <a href="#">Enrollments</a>
+            <a href="#">Fees</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Welcome!</h2>
+        <p>
+            This is your all-in-one platform for managing school operations. Use the navigation above to access different modules.
+        </p>
+        <div class="features">
+            <div class="feature-card">
+                <h3>Student Management</h3>
+                <p>Add, view, update, and track student records and academic progress.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Teacher Management</h3>
+                <p>Manage teacher profiles, assignments, and teaching schedules.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Course Catalog</h3>
+                <p>Organize courses, assign teachers, and manage course details.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Enrollments</h3>
+                <p>Handle student enrollments, course registrations, and class lists.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Fee Tracking</h3>
+                <p>Monitor fee payments, outstanding balances, and generate reports.</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 School Management System &mdash; Designed with ❤️ for education
+    </footer>
+</body>
+</html>
