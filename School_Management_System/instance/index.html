@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <title>School Management System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap 5 CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         html { scroll-behavior: smooth; }
@@ -339,7 +337,6 @@
     <header>
         <h1 id="typed-header"></h1>
         <p id="typed-subheader"></p>
-        <!-- Bootstrap 5 Navbar for small screens only -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary mobile-navbar position-relative" aria-label="Mobile Navigation">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">SMS</a>
@@ -443,11 +440,8 @@
             <a href="#" aria-label="GitHub"><i class="bi bi-github"></i></a>
         </div>
     </footer>
-    <!-- Bootstrap 5 JS Bundle CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Typing Animation Script -->
     <script>
-    // Typing effect for header, subheader, and hero
     function typeWriter(element, texts, speed=70, pause=1200, eraseSpeed=40, loop=true) {
         let i = 0, j = 0, isDeleting = false, text = '', current = 0;
         function tick() {
@@ -471,7 +465,6 @@
         }
         tick();
     }
-    // Main header
     typeWriter(
         document.getElementById('typed-header'),
         [
@@ -480,7 +473,6 @@
             'Your School, Organized & Connected.'
         ]
     );
-    // Subheader
     typeWriter(
         document.getElementById('typed-subheader'),
         [
@@ -490,7 +482,6 @@
         ],
         45, 1800, 30
     );
-    // Hero section
     typeWriter(
         document.getElementById('typed-hero'),
         [
@@ -500,7 +491,6 @@
         ],
         60, 1500, 35
     );
-    // Animated message below hero image
     function typeWriterSimple(element, texts, speed=60, pause=1200, eraseSpeed=30) {
         let j = 0, isDeleting = false, text = '', current = 0;
         function tick() {
