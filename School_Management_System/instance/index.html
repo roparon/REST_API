@@ -60,11 +60,13 @@
             font-size: 1.1rem;
             font-weight: 600;
             box-shadow: 0 4px 16px rgba(79,140,255,0.13);
-            transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.2s, color 0.2s;
             outline: none;
         }
-        nav.main-nav a:hover, nav.main-nav a:focus {
+        nav.main-nav a:hover, nav.main-nav a:focus,
+        .mobile-navbar .nav-link:hover, .mobile-navbar .nav-link:focus {
             background: linear-gradient(90deg, #38ef7d 60%, #4f8cff 100%);
+            color: #222 !important;
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 32px rgba(56,239,125,0.13);
         }
@@ -97,11 +99,7 @@
                 padding: 10px 0;
                 width: 100%;
                 border-radius: 8px;
-                transition: background 0.2s;
-            }
-            .mobile-navbar .nav-link:focus, .mobile-navbar .nav-link:hover {
-                background: #38ef7d;
-                color: #222 !important;
+                transition: background 0.2s, color 0.2s;
             }
         }
         .hero-section {
@@ -190,14 +188,23 @@
         .code-icon {
             font-size: 2rem;
             margin-right: 10px;
-            color: #4f8cff;
-            animation: codeBounce 1.2s infinite alternate;
+            /* Unique animated gradient color for code icon */
+            background: linear-gradient(135deg, #ff6a00 0%, #4f8cff 50%, #38ef7d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            animation: codeBounce 1.2s infinite alternate, codeColor 3s infinite alternate;
             display: inline-block;
         }
         @keyframes codeBounce {
             0% { transform: translateY(0) rotate(-10deg);}
             50% { transform: translateY(-8px) rotate(10deg);}
             100% { transform: translateY(0) rotate(-10deg);}
+        }
+        @keyframes codeColor {
+            0% { filter: hue-rotate(0deg);}
+            100% { filter: hue-rotate(360deg);}
         }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px);}
