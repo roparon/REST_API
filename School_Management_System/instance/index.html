@@ -407,12 +407,9 @@
             <a href="#" aria-label="GitHub"><i class="bi bi-github"></i></a>
         </div>
     </footer>
-    <!-- Bootstrap 5 JS Bundle CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Typing Animation Script -->
     <script>
-    // Typing effect for header, subheader, and hero
-    function typeWriter(element, texts, speed=70, pause=1200, eraseSpeed=40, loop=true) {
+    function typeWriter(element, texts, speed=170, pause=1200, eraseSpeed=40, loop=true) {
         let i = 0, j = 0, isDeleting = false, text = '', current = 0;
         function tick() {
             let fullText = texts[current];
@@ -435,7 +432,6 @@
         }
         tick();
     }
-    // Main header
     typeWriter(
         document.getElementById('typed-header'),
         [
