@@ -552,11 +552,6 @@
 
     function onScrollSectionBg() {
         const scrollY = window.scrollY + window.innerHeight / 2;
-        const heroRect = hero.getBoundingClientRect();
-        const statsRect = stats.getBoundingClientRect();
-        const featuresRect = features.getBoundingClientRect();
-
-        // Get section top relative to document
         const heroTop = hero.offsetTop;
         const statsTop = stats.offsetTop;
         const featuresTop = features.offsetTop;
