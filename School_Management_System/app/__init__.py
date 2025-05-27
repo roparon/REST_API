@@ -1,6 +1,7 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_restful import  Api
+from flask_migrate import Migrate
+from flasgger import Swagger
 from app.resources.user import Users, User
 from app.resources.teacher import Teachers, Teacher
 from app.resources.student import Students, Student
@@ -9,9 +10,24 @@ from app.resources.course import Courses, Course
 from app.resources.fee import Fees, Fee
 from app.extensions import db
 from config import Config
-from flask_migrate import Migrate
 
 
+
+# swagger configuration
+Swagger_config = {
+    "headers": [],
+    "specs": [
+        {
+            "endpoint": 'apispec_1',
+            "route": '/apispec_1.json',
+            "rule_filter": lambda rule: True,  # all in
+            "model_filter": lambda tag: True,  # all in
+        }
+    ],
+    "static_url_path": "/flasgger_static",
+    "swagger_ui": True,
+    "specs_route": "/swagger/"
+}
 
 
 
