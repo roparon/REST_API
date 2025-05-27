@@ -13,35 +13,67 @@ from config import Config
 
 
 
-# swagger configuration
+# Swagger configuration
 Swagger_config = {
-    "headers": [],
-    "specs": [
+    "headers":[],
+    "specs":[
         {
             "endpoint": 'apispec_1',
             "route": '/apispec_1.json',
-            "rule_filter": lambda rule: True,
-            "model_filter": lambda tag: True,
+            "rule_filter": lambda rule: True,  # all in
+            "model_filter": lambda tag: True  # all in
+           
         }
-    ],
-    "static_url_path": "/flasgger_static",
+    ], "static_url_path": "/flasgger_static",
+    # "static_folder": "static",  # must be set by user
     "swagger_ui": True,
     "specs_route": "/apidocs/"
 }
-
-# api information template
+#api information template
 template = {
     "info": {
         "title": "School Management System API",
+        "description": "API for managing school resources such as users, teachers, students, courses, fees, and enrolments.",
         "version": "1.0.0",
-        "description": "API for managing school resources like users, teachers, students, courses, enrollments, and fees.",
         "contact": {
-            "name": "Support",
-            "url": "http://www.example.com/support",
-            "email": "admin@ema.com"
+            "name": "Support Team",
+            "email": "admin@gmail.com"
         }
-    }
-}
+    },
+        "host": "localhost:5000",
+        "basePath": "/api",
+        "schemes": list[str]([
+            "http",
+            "https"
+        ]),
+        "tags": [
+            {
+                "name": "Users",
+                "description": "Operations related to users"
+            },
+            {
+                "name": "Teachers",
+                "description": "Operations related to teachers"
+            },
+            {
+                "name": "Students",
+                "description": "Operations related to students"
+            },
+            {
+                "name": "Courses",
+                "description": "Operations related to courses"
+            },
+            {
+                "name": "Fees",
+                "description": "Operations related to fees"
+            },
+            {
+                "name": "Enrollments",
+                "description": "Operations related to enrollments"
+            }
+        ]
+        
+        }
 
 
 
