@@ -29,12 +29,27 @@ Swagger_config = {
     "specs_route": "/apidocs/"
 }
 
+# api information template
+template = {
+    "info": {
+        "title": "School Management System API",
+        "version": "1.0.0",
+        "description": "API for managing school resources like users, teachers, students, courses, enrollments, and fees.",
+        "contact": {
+            "name": "Support",
+            "url": "http://www.example.com/support",
+            "email": "admin@ema.com"
+        }
+    }
+}
+
 
 
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
 migrate = Migrate(app, db)
+Swagger = Swagger(app, config=Swagger_config, template=template)
 api = Api(app)
 
 
