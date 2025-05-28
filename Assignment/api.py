@@ -13,6 +13,7 @@ def home():
 API_URL = 'https://restcountries.com/v3.1/all'
 
 
+
 #Checking the list of countries
 @app.route('/countries')
 def get_countries():
