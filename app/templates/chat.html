@@ -8,8 +8,7 @@
         <!-- Chat Header -->
         <div class="bg-blue-600 text-white p-4">
             <div class="flex items-center">
-                {% from 'lucide/icons.html' import icon %}
-                {{ icon('message-circle', class='h-6 w-6 mr-2') }}
+                {{ lucide.icon('message-circle', class='h-6 w-6 mr-2') }}
                 <h1 class="text-xl font-semibold">Chat with AI Assistant</h1>
             </div>
         </div>
@@ -21,7 +20,7 @@
                 <div class="flex items-start space-x-3">
                     <div class="flex-shrink-0">
                         <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                            {{ icon('bot', class='h-4 w-4 text-white') }}
+                            {{ lucide.icon('bot', class='h-4 w-4 text-white') }}
                         </div>
                     </div>
                     <div class="flex-1">
@@ -50,7 +49,7 @@
                 <button type="submit" 
                         id="send-button"
                         class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
-                    {{ icon('send', class='h-4 w-4') }}
+                    {{ lucide.icon('send', class='h-4 w-4') }}
                     <span class="ml-2 hidden sm:inline">Send</span>
                 </button>
             </form>
@@ -61,7 +60,7 @@
     <div class="mt-6 text-center">
         <button id="history-toggle" 
                 class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-200">
-            {{ icon('history', class='h-4 w-4 mr-2') }}
+            {{ lucide.icon('history', class='h-4 w-4 mr-2') }}
             Show Chat History
         </button>
     </div>
@@ -73,7 +72,7 @@
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-lg font-medium text-gray-900">Chat History</h3>
                     <button id="close-history" class="text-gray-400 hover:text-gray-600">
-                        {{ icon('x', class='h-6 w-6') }}
+                        {{ lucide.icon('x', class='h-6 w-6') }}
                     </button>
                 </div>
                 <div id="history-content" class="max-h-96 overflow-y-auto">

@@ -20,8 +20,7 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <a href="{{ url_for('main.index') }}" class="flex items-center space-x-2">
-                        {% from 'lucide/icons.html' import icon %}
-                        {{ icon('message-circle', class='h-8 w-8 text-blue-600') }}
+                        {{ lucide.icon('message-circle', class='h-8 w-8 text-blue-600') }}
                         <span class="text-xl font-bold text-gray-900">ChatBot</span>
                     </a>
                 </div>
@@ -29,36 +28,36 @@
                 <div class="flex items-center space-x-4">
                     {% if current_user.is_authenticated %}
                         <a href="{{ url_for('main.chat') }}" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
-                            {{ icon('message-square', class='h-4 w-4 inline mr-1') }}
+                            {{ lucide.icon('message-square', class='h-4 w-4 inline mr-1') }}
                             Chat
                         </a>
                         <a href="{{ url_for('main.about') }}" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
-                            {{ icon('info', class='h-4 w-4 inline mr-1') }}
+                            {{ lucide.icon('info', class='h-4 w-4 inline mr-1') }}
                             About
                         </a>
                         <div class="relative">
                             <button class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" id="user-menu-button">
-                                {{ icon('user', class='h-6 w-6 text-gray-600') }}
+                                {{ lucide.icon('user', class='h-6 w-6 text-gray-600') }}
                                 <span class="ml-2 text-gray-700">{{ current_user.email }}</span>
                             </button>
                             <div class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50" id="user-menu">
                                 <a href="{{ url_for_security('logout') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                    {{ icon('log-out', class='h-4 w-4 mr-2') }}
+                                    {{ lucide.icon('log-out', class='h-4 w-4 mr-2') }}
                                     Sign out
                                 </a>
                             </div>
                         </div>
                     {% else %}
                         <a href="{{ url_for('main.about') }}" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
-                            {{ icon('info', class='h-4 w-4 inline mr-1') }}
+                            {{ lucide.icon('info', class='h-4 w-4 inline mr-1') }}
                             About
                         </a>
                         <a href="{{ url_for_security('login') }}" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
-                            {{ icon('log-in', class='h-4 w-4 inline mr-1') }}
+                            {{ lucide.icon('log-in', class='h-4 w-4 inline mr-1') }}
                             Sign In
                         </a>
                         <a href="{{ url_for_security('register') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700">
-                            {{ icon('user-plus', class='h-4 w-4 inline mr-1') }}
+                            {{ lucide.icon('user-plus', class='h-4 w-4 inline mr-1') }}
                             Sign Up
                         </a>
                     {% endif %}

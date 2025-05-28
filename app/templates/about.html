@@ -5,9 +5,8 @@
 {% block content %}
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="text-center mb-12">
-        {% from 'lucide/icons.html' import icon %}
         <div class="inline-flex items-center justify-center p-6 bg-blue-600 rounded-full mb-6">
-            {{ icon('info', class='h-16 w-16 text-white') }}
+            {{ lucide.icon('info', class='h-16 w-16 text-white') }}
         </div>
         <h1 class="text-4xl font-bold text-gray-900 mb-4">About Modern Chatbot</h1>
         <p class="text-xl text-gray-600">Learn more about our intelligent conversation platform</p>
@@ -16,7 +15,7 @@
     <div class="prose prose-lg max-w-none">
         <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
             <h2 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
-                {{ icon('target', class='h-6 w-6 mr-2 text-blue-600') }}
+                {{ lucide.icon('target', class='h-6 w-6 mr-2 text-blue-600') }}
                 Our Mission
             </h2>
             <p class="text-gray-700 mb-6">
@@ -28,32 +27,32 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div class="bg-white rounded-lg shadow-lg p-6">
                 <h3 class="text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                    {{ icon('code', class='h-5 w-5 mr-2 text-blue-600') }}
+                    {{ lucide.icon('code', class='h-5 w-5 mr-2 text-blue-600') }}
                     Technology Stack
                 </h3>
                 <ul class="space-y-2 text-gray-700">
                     <li class="flex items-center">
-                        {{ icon('check', class='h-4 w-4 mr-2 text-green-600') }}
+                        {{ lucide.icon('check', class='h-4 w-4 mr-2 text-green-600') }}
                         Flask 3.1.1 - Web Framework
                     </li>
                     <li class="flex items-center">
-                        {{ icon('check', class='h-4 w-4 mr-2 text-green-600') }}
+                        {{ lucide.icon('check', class='h-4 w-4 mr-2 text-green-600') }}
                         Flask-Security - Authentication
                     </li>
                     <li class="flex items-center">
-                        {{ icon('check', class='h-4 w-4 mr-2 text-green-600') }}
+                        {{ lucide.icon('check', class='h-4 w-4 mr-2 text-green-600') }}
                         Flask-RESTful - API Management
                     </li>
                     <li class="flex items-center">
-                        {{ icon('check', class='h-4 w-4 mr-2 text-green-600') }}
+                        {{ lucide.icon('check', class='h-4 w-4 mr-2 text-green-600') }}
                         SQLite - Database
                     </li>
                     <li class="flex items-center">
-                        {{ icon('check', class='h-4 w-4 mr-2 text-green-600') }}
+                        {{ lucide.icon('check', class='h-4 w-4 mr-2 text-green-600') }}
                         Lucide Icons - Beautiful UI
                     </li>
                     <li class="flex items-center">
-                        {{ icon('check', class='h-4 w-4 mr-2 text-green-600') }}
+                        {{ lucide.icon('check', class='h-4 w-4 mr-2 text-green-600') }}
                         Tailwind CSS - Styling
                     </li>
                 </ul>
@@ -61,28 +60,28 @@
             
             <div class="bg-white rounded-lg shadow-lg p-6">
                 <h3 class="text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                    {{ icon('shield', class='h-5 w-5 mr-2 text-blue-600') }}
+                    {{ lucide.icon('shield', class='h-5 w-5 mr-2 text-blue-600') }}
                     Security Features
                 </h3>
                 <ul class="space-y-2 text-gray-700">
                     <li class="flex items-center">
-                        {{ icon('check', class='h-4 w-4 mr-2 text-green-600') }}
+                        {{ lucide.icon('check', class='h-4 w-4 mr-2 text-green-600') }}
                         CSRF Protection
                     </li>
                     <li class="flex items-center">
-                        {{ icon('check', class='h-4 w-4 mr-2 text-green-600') }}
+                        {{ lucide.icon('check', class='h-4 w-4 mr-2 text-green-600') }}
                         Secure Session Management
                     </li>
                     <li class="flex items-center">
-                        {{ icon('check', class='h-4 w-4 mr-2 text-green-600') }}
+                        {{ lucide.icon('check', class='h-4 w-4 mr-2 text-green-600') }}
                         Password Hashing
                     </li>
                     <li class="flex items-center">
-                        {{ icon('check', class='h-4 w-4 mr-2 text-green-600') }}
+                        {{ lucide.icon('check', class='h-4 w-4 mr-2 text-green-600') }}
                         Input Validation
                     </li>
                     <li class="flex items-center">
-                        {{ icon('check', class='h-4 w-4 mr-2 text-green-600') }}
+                        {{ lucide.icon('check', class='h-4 w-4 mr-2 text-green-600') }}
                         Secure Configuration
                     </li>
                 </ul>
@@ -91,7 +90,7 @@
         
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h2 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
-                {{ icon('users', class='h-6 w-6 mr-2 text-blue-600') }}
+                {{ lucide.icon('users', class='h-6 w-6 mr-2 text-blue-600') }}
                 Get Started
             </h2>
             <p class="text-gray-700 mb-6">
@@ -101,18 +100,18 @@
                 {% if not current_user.is_authenticated %}
                 <a href="{{ url_for_security('register') }}" 
                    class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200">
-                    {{ icon('user-plus', class='h-5 w-5 mr-2') }}
+                    {{ lucide.icon('user-plus', class='h-5 w-5 mr-2') }}
                     Create Account
                 </a>
                 <a href="{{ url_for_security('login') }}" 
                    class="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200">
-                    {{ icon('log-in', class='h-5 w-5 mr-2') }}
+                    {{ lucide.icon('log-in', class='h-5 w-5 mr-2') }}
                     Sign In
                 </a>
                 {% else %}
                 <a href="{{ url_for('main.chat') }}" 
                    class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200">
-                    {{ icon('message-square', class='h-5 w-5 mr-2') }}
+                    {{ lucide.icon('message-square', class='h-5 w-5 mr-2') }}
                     Start Chatting
                 </a>
                 {% endif %}
