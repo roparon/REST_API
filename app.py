@@ -5,13 +5,24 @@ app = Flask(__name__)
 
 @app.route('/divide')
 def divide():
-    num = int(request.args.get('num'))
-    return str(100 / num)  
+    string_args = request.args.get('num')
+    if not string_args:
+        return "Please provide a 'num' parameter", 400
+    try:
+        num = int(string_args)
+        if num == 0:
+            return "cannot divide by zero", 400
+        return f"Result: {100 / num}"
+    except ValueError:
+        return "Invalid number format", 400
 
 
 @app.route('/length')
 def length():
     name = request.args.get('name')
+    if not name:
+        return "Please provide a 'name' parameter", 400
+    
     return f"Length: {len(name)}"  
 
 
@@ -19,7 +30,15 @@ def length():
 def add():
     a = request.args.get('a')  
     b = request.args.get('b')
-    return f"Sum: {a + b}"  
+    if not a or not b:
+        return "Please provide both 'a' and 'b' parameters", 400
+    try:
+        a = int(a)
+        b = int(b)
+        result = a + b
+        return f"sum: {result}"
+    except ValueError:
+        return "Invalid number format for 'a' or 'b'"
 
 
 @app.route('/undefined')
