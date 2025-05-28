@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse, fields, marshal_with, abort
 from app.models.enrollment import EnrollmentModel
-from app.extension import db
+from app.extensions import db
 from datetime import datetime, timezone
 from dateutil.parser import parse as date_parse
 
