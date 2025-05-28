@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link href="https://cdn.jsdelivr.net/npm/lucide-icons@0.1.0/dist/lucide.min.css" rel="stylesheet">
+    <style>
+        body { font-family: sans-serif; margin: 2em; }
+        .container { max-width: 800px; margin: 0 auto; }
+        #chat { border: 1px solid #ccc; padding: 1em; height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5em; }
+        .message { display: flex; }
+        .bubble { padding: 0.5em 1em; border-radius: 1em; max-width: 70%; }
+        .user .bubble { background-color: #dcf8c6; align-self: flex-end; }
+        .bot .bubble { background-color: #f1f0f0; }
+        #input-area { display: flex; gap: 0.5em; margin-top: 1em; }
+        #input { flex: 1; padding: 0.5em; border: 1px solid #ccc; border-radius: 1em; }
+        #send-btn { padding: 0.5em 1em; border: none; background-color: #007bff; color: white; border-radius: 1em; cursor: pointer; }
+        #send-btn:hover { background-color: #0056b3; }
+        #loading { font-style: italic; }
+    </style>
+</head>
+<body>
+    {% extends 'security/base.html' %}
+    {% block content %}
+    <div class="container">
+        <h1 style="display:flex;align-items:center;gap:0.5em;"><i class="lucide-message-square"></i> Chatbot</h1>
+        {% if current_user.is_authenticated %}
+            <p style="margin-bottom:1em;">Hello, {{ current_user.email }}! <a href="{{ url_for('security.logout') }}">Logout</a></p>
+            <div id="chat"></div>
+            <div id="input-area">
+                <input id="input" type="text" placeholder="Type a message..." autocomplete="off">
+                <button id="send-btn" title="Send" onclick="sendMessage()"><i class="lucide-send"></i></button>
+            </div>
+            <span id="loading" class="loading" style="display:none;">Bot is typing...</span>
+            <script src="https://cdn.jsdelivr.net/npm/lucide@0.271.0/dist/umd/lucide.min.js"></script>
+            <link rel="stylesheet" href="/static/css/chatbot.css">
+            <script>
+            lucide.createIcons();
+            const chat = document.getElementById('chat');
+            const input = document.getElementById('input');
+            const loading = document.getElementById('loading');
+            function addMessage(text, sender) {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'message ' + sender;
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble ' + sender;
+                bubble.textContent = text;
+                msgDiv.appendChild(bubble);
+                chat.appendChild(msgDiv);
+                chat.scrollTop = chat.scrollHeight;
+            }
+            async function sendMessage() {
+                const message = input.value.trim();
+                if (!message) return;
+                addMessage(message, 'user');
+                input.value = '';
+                loading.style.display = 'inline';
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({message})
+                });
+                const data = await res.json();
+                addMessage(data.response, 'bot');
+                loading.style.display = 'none';
+            }
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') sendMessage();
+            });
+            </script>
+        {% else %}
+            <p><a href="{{ url_for('security.login') }}">Login</a> or <a href="{{ url_for('security.register') }}">Register</a> to use the chatbot.</p>
+        {% endif %}
+    </div>
+    {% endblock %}
+</body>
+</html>
